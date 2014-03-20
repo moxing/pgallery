@@ -1,0 +1,13 @@
+<div class="row">
+<% @list.each do |gallery| %>
+<div class="col-md-2">
+	<div class="thumbnail text-center">
+		<%=image_tag(thumbnail_url(gallery[:name]))%>
+		<p>
+			<h4><%= link_to gallery[:name],  :action => "gallery_detail/#{gallery[:id]}" %></h4>
+			<%= gallery[:number] %>
+		</p>
+	</div>
+</div>
+<% end %>
+</div>
