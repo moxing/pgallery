@@ -1,6 +1,11 @@
 class GalleryController < ApplicationController
   def list
-    @list = Gallery.all
+    if params[:order] == '1'
+      @list = Gallery.order('name').all
+    else
+      @list = Gallery.all
+    end
+    render :file => 'gallery/list_1' if params[:type] == '1'
   end
 
   def gallery_detail

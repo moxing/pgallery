@@ -1,9 +1,6 @@
 <h2 class="text-center"><%= @gallery[:name] %></h2>
 <div class="row">
-	<div class="col-md-12 text-center">
-		<%= image_tag(thumbnail_url(@gallery[:name]),:class => "img-thumbnail") %>
-	</div>
-	<div class="col-md-6">
+	<div class="col-md-6 col-md-offset-1">
 		<table class="table table-striped table-hover">
 		<thead>
 		  <tr>
@@ -16,7 +13,7 @@
 		<tr class="picture-info">
 			<td class="text-center picture-name"><%= pictrue[:name] %></td>
 			<td class="text-center"><%= "#{pictrue[:size]/1024}kb" %></td>
-			<td class="text-center"><%= pictrue[:time] %></td>
+			<td class="text-center"><%= pictrue[:time].strftime('%Y-%m-%d %H:%M:%S') %></td>
 		</tr>
 		<% end %>
 		</table>
@@ -24,6 +21,7 @@
 	<div class="col-md-4 col-md-offset-1 text-center view-picture" style="position:fixed;bottom:50px;right:100px;">
 	</div>
 </div>
+
 <script type="text/javascript">
     $(document).ready(function() {
 
