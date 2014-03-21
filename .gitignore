@@ -13,3 +13,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+README.rdoc
+lib/piniu.rb
+test/functional/picture_controller_test.rb
+test/unit/helpers/picture_helper_test.rb

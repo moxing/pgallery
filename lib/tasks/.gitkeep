@@ -1,0 +1,7 @@
+namespace :d do
+		
+	desc "donwload picture from gallery"
+	task :download
+		puts "hello"
+	end 
+end
