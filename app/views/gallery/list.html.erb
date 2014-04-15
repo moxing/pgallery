@@ -1,22 +1,23 @@
-<div class="row">
-<div class="col-md-10 col-md-offset-1">
-<div class="btn-group col-md-2 col-md-offset-10" style="margin-bottom:20px;">
-<a href="/gallery/list?type=1"><button type="button btn-default"><span class="glyphicon glyphicon-align-justify"></span></button></a>
-</div>	
-<div class="row">	
-<% @list.each do |gallery| %>
-<div class="col-md-2">
-	<div class="thumbnail text-center">
-		<%= link_to :action => "gallery_detail/#{gallery[:id]}" do%>
-			<%=image_tag(thumbnail_url(gallery[:name]))%>
-		<% end %>
-		<p>
-			<h4><%= link_to gallery[:name],  :action => "gallery_detail/#{gallery[:id]}" %></h4>
-			<%= gallery[:number] %>
-		</p>
+<div class="container">
+	<div class="row">
+		<div class="btn-group col-md-1 col-md-offset-11" >	
+			<a href="/gallery/list"><button type="button btn-default"><span class="glyphicon glyphicon-picture"></span></button></a>
+			<a href="/gallery/list?type=1&order=1"><button type="button btn-default"><span class="glyphicon glyphicon-list"></span></button></a>
+		</div>
+    </div>
+	<div class="row">
+	<% @list.each do |gallery| %>
+	<div class="col-md-2">
+		<div class="thumbnail text-center">
+			<%= link_to :action => "gallery_detail/#{gallery[:id]}" do%>
+				<%=image_tag(thumbnail_url(gallery[:name]))%>
+			<% end %>
+			<p>
+				<h4><%= link_to gallery[:name],  :action => "gallery_detail/#{gallery[:id]}" %></h4>
+				<%= gallery[:number] %>
+			</p>
+		</div>
 	</div>
-</div>
-<% end %>
-</div>
-</div>
+	<% end %>
+	</div>
 </div>
