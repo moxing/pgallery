@@ -1,2 +1,30 @@
-<h1>Task#index</h1>
-<p>Find me in app/views/task/index.html.erb</p>
+<div class="container">
+	<div class="row">
+		<form class="form-horizontal" role="form" action="/task/index" method="post">
+		  <div class="form-group">
+		    <label class="col-md-offset-1 col-sm-2 control-label">Url</label>
+		    <div class="col-sm-6">
+			    <input type="text" class="form-control" name="url" placeholder="Enter url" value="http://g-x3hw4h3buw.urlcash.net">
+			 </div>
+			  <div class="col-sm-1">
+				  <button type="submit" class="btn btn-default">Submit</button>
+			  </div>
+		  </div>
+		</form>
+    </div>
+	
+
+	<div class="row">
+	<% if @list %>
+		<table class="table table-bordered">
+			<% @list.each do |img| %>
+			<tr>
+				<td><%=image_tag(img)%></td>
+				<td><%=img%></td>
+			</tr>
+			<% end %>
+		</table>		
+	<% end %>
+	</div>
+</div>
+

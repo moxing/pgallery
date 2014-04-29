@@ -50,8 +50,11 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_portile (0.5.1)
     multi_json (1.8.4)
     mysql2 (0.3.15)
+    nokogiri (1.6.0-x86-mingw32)
+      mini_portile (~> 0.5.0)
     polyglot (0.3.4)
     qiniu-rs (3.4.6)
       json (~> 1.7)
@@ -113,6 +116,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   jquery-rails
   mysql2
+  nokogiri
   qiniu-rs
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
