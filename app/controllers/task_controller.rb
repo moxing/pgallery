@@ -1,28 +1,25 @@
-require 'net/http'
-require 'nokogiri'
+require "image_page"
 
 class TaskController < ApplicationController
 
   def index
   	if params[:url]
   	  url = params[:url]
-  	  @list = getList(url)
+  	  page = ImagePage::Page.new(url)
+      @album = page.getAlbumName
+      @album_md5 = Digest::MD5.digest(url) 
+      @list = page.getImgList
+      Rails.cache.write(@album_md5, @list)
+      # render :json => @list;
   	end
   end
 
-  def history
+  def create
+    if params[:task_name]
+      task_name = params[:task_name]
+      # url = params[:page_url]
+
+    end
   end
 
-  private
-
-  def getList( url )
-  	uri = URI.parse(url)
-  	list = Array.new
-  	doc = Nokogiri::HTML(Net::HTTP.get(uri))
-	doc.css('table td a img.border').each do |img|
-		list.push(img['src'])
-	end
-
-	return list
-  end  
 end

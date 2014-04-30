@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140415035514) do
+ActiveRecord::Schema.define(:version => 20140430065849) do
 
   create_table "galleries", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,23 @@ ActiveRecord::Schema.define(:version => 20140415035514) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.datetime "update_time"
+  end
+
+  create_table "task_images", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.integer  "status"
+    t.integer  "task_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "tasks", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.integer  "status"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

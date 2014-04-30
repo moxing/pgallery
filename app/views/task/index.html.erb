@@ -16,14 +16,27 @@
 
 	<div class="row">
 	<% if @list %>
-		<table class="table table-bordered">
-			<% @list.each do |img| %>
+		<form class="form-horizontal" role="form" action="/task/create" method="post">
+		  <%= hidden_field_tag "album_timestamp", @album_timestamp %>	
+		  <div class="form-group">
+		    <label class="col-md-offset-1 col-sm-2 control-label">Task</label>
+		    <div class="col-sm-6">
+			    <input type="text" class="form-control" name="task_name" placeholder="Enter task name" value="<%= @album %>">
+			 </div>
+			  <div class="col-sm-1">
+				  <button type="submit" class="btn btn-default">Create Task</button>
+			  </div>
+		  </div>
+		</form>
+
+		<table class="table table-bordered table-hover table-condensed">
+			<% @list.each_index do |i| %>
 			<tr>
-				<td><%=image_tag(img)%></td>
-				<td><%=img%></td>
+				<td><%= @list[i][:url] %></td>
+				<td><%= @album %>_<%= "%03d.jpg" % (i+1).to_i %></td>
 			</tr>
 			<% end %>
-		</table>		
+		</table>
 	<% end %>
 	</div>
 </div>
