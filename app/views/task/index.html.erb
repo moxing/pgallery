@@ -4,7 +4,7 @@
 		  <div class="form-group">
 		    <label class="col-md-offset-1 col-sm-2 control-label">Url</label>
 		    <div class="col-sm-6">
-			    <input type="text" class="form-control" name="url" placeholder="Enter url" value="http://g-x3hw4h3buw.urlcash.net">
+			    <input type="text" class="form-control" name="url" placeholder="Enter url" value="">
 			 </div>
 			  <div class="col-sm-1">
 				  <button type="submit" class="btn btn-default">Submit</button>
@@ -17,22 +17,29 @@
 	<div class="row">
 	<% if @list %>
 		<form class="form-horizontal" role="form" action="/task/create" method="post">
-		  <%= hidden_field_tag "album_timestamp", @album_timestamp %>	
+		  <%= hidden_field_tag "album_md5", @album_md5 %>
+		  <%= hidden_field_tag "task_url", @task_url %>
 		  <div class="form-group">
 		    <label class="col-md-offset-1 col-sm-2 control-label">Task</label>
 		    <div class="col-sm-6">
-			    <input type="text" class="form-control" name="task_name" placeholder="Enter task name" value="<%= @album %>">
+			    <input type="text" class="form-control" name="task_name" placeholder="Enter task name" value="<% if @task %> <%= @task.name %> <% else %> @album <% end %>">
 			 </div>
 			  <div class="col-sm-1">
-				  <button type="submit" class="btn btn-default">Create Task</button>
+				  <button type="submit" class="btn btn-default" <% unless @task.nil? %>disabled="disabled"<% end %>>Create Task</button>
 			  </div>
 		  </div>
 		</form>
 
 		<table class="table table-bordered table-hover table-condensed">
+			<tr>
+				<th class="text-center">img-thumb-url</th>
+				<th class="text-center">img-url</th>
+				<th class="text-center">img-name</th>
+			</tr>
 			<% @list.each_index do |i| %>
 			<tr>
-				<td><%= @list[i][:url] %></td>
+				<td><%= @list.fetch(i) %></td>
+				<td><%= @list.fetch(i).gsub('/th/','/i/') %></td>
 				<td><%= @album %>_<%= "%03d.jpg" % (i+1).to_i %></td>
 			</tr>
 			<% end %>

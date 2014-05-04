@@ -1,0 +1,20 @@
+<div class="container">
+
+	<div class="row">
+	<div class=" col-md-3">
+	<% if @task_list %>
+		<table class="table table-bordered table-hover table-condensed">
+			<tr>
+				<th class="text-center">task-name</th>
+			</tr>
+			<% @task_list.each_index do |i| %>
+			<tr>
+				<td><%= @task_list.fetch(i)[:name] %></td>
+			</tr>
+			<% end %>
+		</table>
+	<% end %>
+	</div>
+	</div>
+</div>
+
