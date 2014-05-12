@@ -1,0 +1,8 @@
+<tr>
+	<td><%= image[:name] %></td>
+	<td><%= image[:url] %></td>
+	<td><%= image[:updated_at].to_s %></td>
+	<td class="text-center"><% if image[:status] == 0 %><span class="glyphicon glyphicon-floppy-save"></span><% elsif image[:status] == 1 %><span class="glyphicon glyphicon-floppy-saved"></span><% end %></td>
+</tr>
+
+

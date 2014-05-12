@@ -18,9 +18,7 @@ module ImagePage
 	  def getImgList( selector = "table td a img.border" )
 	  	getAlbumName()
 	  	list = Array.new
-		index = 1
 		@doc.css( selector ).each do |img|
-			# file_name = "%s_%03d.jpg" % [@album,index]  
 			list.push( img['src'] )
 		end
 

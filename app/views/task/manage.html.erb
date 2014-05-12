@@ -9,11 +9,14 @@
 			</tr>
 			<% @task_list.each_index do |i| %>
 			<tr>
-				<td><%= @task_list.fetch(i)[:name] %></td>
+				<td><%=link_to  @task_list.fetch(i)[:name], :remote => true, "data-type" => "script","id" => @task_list.fetch(i)[:id] %> 
+				</td>
 			</tr>
 			<% end %>
 		</table>
 	<% end %>
+	</div>
+	<div class=" col-md-9" id="content">
 	</div>
 	</div>
 </div>

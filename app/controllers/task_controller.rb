@@ -5,16 +5,19 @@ class TaskController < ApplicationController
   def index
   	if params[:url]
   	  @task_url = params[:url]
+      # @task = Task.where(:url => @task_url)
       @album_md5 = Digest::MD5.hexdigest(@task_url)
       @task = Rails.cache.read(@album_md5)
+
       if @task.nil?
         page = ImagePage::Page.new(@task_url)
-        @album = page.getAlbumName      
-        @list = page.getImgList 
-        @task = {:list => @list, :name => @album}
-        Rails.cache.write(@album_md5, @task)   
+        @album = page.getAlbumName
+        @list = page.getImgList
+        if @list.size > 10 
+          @task = {:list => @list, :name => @album}
+          Rails.cache.write(@album_md5, @task)   
+        end
       end
-      @task = Task.where(:url => @task_url)
   	end
   end
 
@@ -25,10 +28,10 @@ class TaskController < ApplicationController
       inserts = []
       i = 1;
       cache[:list].each do |img|
-        inserts.push("('#{img.gsub('/th/','/i/')}','#{params[:task_name]}_%03d.jpg',#{task.id})" % i)
+        inserts.push("('#{img.gsub('/th/','/i/')}','#{params[:task_name]}_%03d.jpg',#{task.id},now(),now()" % i)
         i+=1
       end
-      sql = "INSERT INTO task_images (url, name, task_id) VALUES #{inserts.join(", ")}"
+      sql = "INSERT INTO task_images (url, name, task_id, created_at, updated_at) VALUES #{inserts.join(", ")}"
       TaskImage.connection.execute sql    
       unless params[:task_name].eql?(cache[:name])
         cache[:name] = params[:task_name]
@@ -40,6 +43,13 @@ class TaskController < ApplicationController
   end
 
   def manage
+    if params[:id]
+      task = Task.find(params[:id])
+      @list = task.task_images
+      respond_to do |format|
+        format.js
+      end
+    end
     @task_list = Task.all
     unless params[:task_id].nil?
       @img_list = Task.find(params[:task_id]).task_image
