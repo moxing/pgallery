@@ -8,7 +8,7 @@
 	<div class="row">
 	<% @list.each do |gallery| %>
 	<div class="col-md-2">
-		<p><%= link_to :action => "gallery_detail/#{gallery[:id]}" do %><h4><%= gallery[:name] %></h4><% end %>(<%= gallery[:number] %>)</p>
+		<p><%= link_to :action => "gallery_detail/#{gallery[:id]}" do %><h4><%= gallery[:name] %></h4><% end %><span class="badge"><%= gallery[:number] %></span></p>
 	</div>
 	<% end %>
 	</div>

@@ -33,14 +33,14 @@
 		<table class="table table-bordered table-hover table-condensed">
 			<tr>
 				<th class="text-center">img-thumb-url</th>
-				<th class="text-center">img-url</th>
+				<th class="text-center">img-url <%= text_field_tag 'url_regx' %></th>
 				<th class="text-center">img-name</th>
 			</tr>
 			<% @task[:list].each_index do |i| %>
 			<tr>
-				<td><%= @task[:list].fetch(i) %></td>
-				<td><%= @task[:list].fetch(i).gsub('/th/','/i/') %></td>
-				<td><%= @task[:name] %>_<%= "%03d.jpg" % (i+1).to_i %></td>
+				<td class="thumb-url"><%= @task[:list].fetch(i) %></td>
+				<td class="ori-url"><%= @task[:list].fetch(i).gsub('/th/','/i/') %></td>
+				<td class="img-name"><%= @task[:name] %>_<%= "%03d.jpg" % (i+1).to_i %></td>
 			</tr>
 			<% end %>
 		</table>

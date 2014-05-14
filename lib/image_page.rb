@@ -11,7 +11,9 @@ module ImagePage
 	  end
 
 	  def getAlbumName( selector = "" )
-	  	@album = @doc.title[15..-5].downcase().gsub(" ","_").gsub("_set","")
+	  	if @doc.title
+		  	@album = @doc.title[15..-5].downcase().gsub(" ","_").gsub("_set","")
+		end
 	  end
 
       # get picture url list

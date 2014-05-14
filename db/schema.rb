@@ -25,18 +25,18 @@ ActiveRecord::Schema.define(:version => 20140430065849) do
   create_table "task_images", :force => true do |t|
     t.string   "name"
     t.string   "url"
-    t.integer  "status"
+    t.integer  "status",     :default => 0
     t.integer  "task_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "tasks", :force => true do |t|
     t.string   "name"
     t.string   "url"
-    t.integer  "status"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "status",     :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
 end

@@ -5,24 +5,24 @@ class TaskController < ApplicationController
   def index
   	if params[:url]
   	  @task_url = params[:url]
-      # @task = Task.where(:url => @task_url)
       @album_md5 = Digest::MD5.hexdigest(@task_url)
       @task = Rails.cache.read(@album_md5)
 
       if @task.nil?
         page = ImagePage::Page.new(@task_url)
-        @album = page.getAlbumName
-        @list = page.getImgList
-        if @list.size > 10 
-          @task = {:list => @list, :name => @album}
-          Rails.cache.write(@album_md5, @task)   
+        if @album = page.getAlbumName
+          @list = page.getImgList
+          if @list.size > 10 
+            @task = {:list => @list, :name => @album}
+            Rails.cache.write(@album_md5, @task)   
+          end
         end
       end
   	end
   end
 
   def create
-    unless params[:task_name].nil?
+    unless params[:task_name].nil? 
       task = Task.create({:name => params[:task_name], :url => params[:task_url]})
       cache = Rails.cache.read(params[:album_md5])
       inserts = []

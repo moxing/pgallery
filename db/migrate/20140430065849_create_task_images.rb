@@ -3,7 +3,7 @@ class CreateTaskImages < ActiveRecord::Migration
     create_table :task_images do |t|
       t.string :name
       t.string :url
-      t.integer :status
+      t.integer :status , default:0
       t.integer :task_id
 
       t.timestamps
