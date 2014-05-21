@@ -20,9 +20,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+# gem 'jquery-rails'
 
-gem 'qiniu-rs'
+gem 'qiniu', '~>6.2.1'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -31,9 +31,10 @@ gem 'qiniu-rs'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
+gem 'nokogiri'
 # gem 'capistrano'
 
 # To use debugger

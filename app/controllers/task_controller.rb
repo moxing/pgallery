@@ -14,7 +14,7 @@ class TaskController < ApplicationController
           @list = page.getImgList
           if @list.size > 10 
             @task = {:list => @list, :name => @album}
-            Rails.cache.write(@album_md5, @task)   
+            Rails.cache.write(@album_md5, @task)
           end
         end
       end
@@ -26,12 +26,14 @@ class TaskController < ApplicationController
       task = Task.create({:name => params[:task_name], :url => params[:task_url]})
       cache = Rails.cache.read(params[:album_md5])
       inserts = []
+      name = params[:task_name].strip
       i = 1;
       cache[:list].each do |img|
-        inserts.push("('#{img.gsub('/th/','/i/')}','#{params[:task_name]}_%03d.jpg',#{task.id},now(),now()" % i)
+        inserts.push("('#{img.gsub('/th/','/i/')}','#{name}_%03d.jpg',#{task.id},now(),now())" % i)
         i+=1
       end
       sql = "INSERT INTO task_images (url, name, task_id, created_at, updated_at) VALUES #{inserts.join(", ")}"
+      puts sql
       TaskImage.connection.execute sql    
       unless params[:task_name].eql?(cache[:name])
         cache[:name] = params[:task_name]
@@ -39,7 +41,7 @@ class TaskController < ApplicationController
       end
     end 
 
-    redirection :action => ''
+    redirect_to :action => 'manage'
   end
 
   def manage
